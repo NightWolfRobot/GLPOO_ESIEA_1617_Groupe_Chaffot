@@ -12,8 +12,7 @@ public class CSVChildTest {
 	
 	@Test
 	public void testGetChildren(){
-		CSVChild csv = new CSVChild();
-		ArrayList<Child> children = csv.getChildren("/csv/childrenTest.csv");
+		ArrayList<Child> children = CSVChild.getChildren("/csv/children.csv");
 		assertEquals(children.get(1).getName(), "Jenny");
 		assertEquals(children.get(1).getNbEggs(), 0);
 	}

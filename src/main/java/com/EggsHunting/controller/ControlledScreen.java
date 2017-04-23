@@ -1,12 +1,11 @@
 package com.EggsHunting.controller;
 import org.apache.log4j.Logger;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 
 public abstract class ControlledScreen {
 	private static Logger log = Logger.getLogger(ControlledScreen.class);
-    //protected Mediatheque       mediatheque;
+    //Here you can declare your object of datas you want to share with all your controllers
     protected ScreenManager    sm;
     
     public void setScreenParent(ScreenManager screenPage) {
@@ -14,7 +13,7 @@ public abstract class ControlledScreen {
     }
 
     public void setDatas(Object o) {
-        //mediatheque = (Mediatheque) o;
+        //Here you set your object of datas by casting the object received
         log.info("Datas from controlled screen has been set");
         
     }

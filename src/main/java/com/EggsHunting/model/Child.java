@@ -34,6 +34,38 @@ public class Child {
 		this.items = new ArrayList<Item>();
 	}
 	
+	public Orientation getOrientation() {
+		return orientation;
+	}
+
+	public void setOrientation(Orientation orientation) {
+		this.orientation = orientation;
+	}
+
+	public ArrayList<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(ArrayList<Item> items) {
+		this.items = items;
+	}
+
+	public ArrayList<Movement> getPath() {
+		return path;
+	}
+
+	public void setPath(ArrayList<Movement> path) {
+		this.path = path;
+	}
+
+	public Point getPosition() {
+		return position;
+	}
+
+	public void setPosition(Point position) {
+		this.position = position;
+	}
+
 	public int getNbEggs(){
 		int nbEggs = 0;
 		for(Item i : items){

@@ -15,12 +15,12 @@ import com.opencsv.CSVReader;
 
 public class CSVChild {
 	private static Logger log = Logger.getLogger(CSVChild.class);
-	private CSVReader reader;
+	private static CSVReader reader;
 
 	
-	public ArrayList<Child> getChildren(String path){ //  /csv/children.csv
+	public static ArrayList<Child> getChildren(String path){ //  /csv/children.csv
 		try{
-			reader = new CSVReader(new InputStreamReader(getClass().getResourceAsStream(path)), ' ');
+			reader = new CSVReader(new InputStreamReader(CSVChild.class.getResourceAsStream(path)), ' ');
 		}
 		catch(Exception e){
 			log.error("Impossible to access the CSV file"+ e.toString());
@@ -47,7 +47,7 @@ public class CSVChild {
 		return children;
 	}
 	
-	private ArrayList<Movement> turnStringIntoPath(String str){
+	private static ArrayList<Movement> turnStringIntoPath(String str){
 		ArrayList<Movement> mvt = new ArrayList<>();
 		for(int i=0; i< str.length(); i++){
 			switch(str.charAt(i)){
@@ -65,14 +65,14 @@ public class CSVChild {
 		return mvt;
 	}
 	
-	private Point turnStringIntoCoordinates(String str){
+	private static Point turnStringIntoCoordinates(String str){
 		Point p = new Point();
 		p.x = Integer.parseInt(""+str.charAt(0)); 
 		p.y = Integer.parseInt(""+str.charAt(2)); 
 		return p;
 	}
 	
-	private Orientation turnStringIntoOrientation(String str){
+	private static Orientation turnStringIntoOrientation(String str){
 		switch(str.charAt(0)){
 			case 'N': return Orientation.NORTH;
 			case 'E': return Orientation.EAST;

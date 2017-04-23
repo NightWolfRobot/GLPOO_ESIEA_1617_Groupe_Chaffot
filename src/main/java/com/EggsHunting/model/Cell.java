@@ -18,6 +18,16 @@ public class Cell {
 		return false;
 	}
 	
+	public int getNbEggs(){
+		int cmpt = 0;
+		for(Item i : items){
+			if(i instanceof Egg){
+				cmpt++;
+			}
+		}
+		return cmpt;
+	}
+	
 	public void removeItem(Item i){
 		items.remove(i);
 	}
@@ -39,5 +49,19 @@ public class Cell {
 			}
 		}
 		return tmpList;
+	}
+
+	/**
+	 * @return the items
+	 */
+	public ArrayList<Item> getItems() {
+		return items;
+	}
+
+	/**
+	 * @param items the items to set
+	 */
+	public void setItems(ArrayList<Item> items) {
+		this.items = items;
 	}
 }

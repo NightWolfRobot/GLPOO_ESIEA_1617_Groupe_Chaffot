@@ -36,7 +36,7 @@ public class MainApp extends Application {
     	
         CSVChild csv = new CSVChild();
         csv.getChildren("/csv/children.csv");
-        /*log.info("Starting Hello JavaFX and Maven demonstration application");*/
+        log.info("Starting Hello JavaFX and Maven demonstration application");
 
     }
 }
