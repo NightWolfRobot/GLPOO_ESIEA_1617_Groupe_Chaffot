@@ -1,13 +1,13 @@
 package com.EggsHunting.controller;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import com.EggsHunting.util.CSVChild;
 
 public class MainApp extends Application {
 
@@ -20,6 +20,7 @@ public class MainApp extends Application {
     }
 
     public void start(Stage stage) throws Exception {
+
     	ScreenManager mainContainer = new ScreenManager();
 
     	mainContainer.loadScreen(MainApp.screenHomeID, MainApp.screenHomeFile, null);
@@ -33,6 +34,8 @@ public class MainApp extends Application {
         stage.setScene(scene);
         stage.show();
     	
+        CSVChild csv = new CSVChild();
+        csv.getChildren();
         /*log.info("Starting Hello JavaFX and Maven demonstration application");*/
 
     }

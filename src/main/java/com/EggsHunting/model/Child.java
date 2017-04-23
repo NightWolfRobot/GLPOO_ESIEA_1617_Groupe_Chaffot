@@ -17,6 +17,7 @@ public class Child {
 	private ArrayList<Item> items;
 	private ArrayList<Movement> path;
 	private Point position; //X is horizontal and Y is vertical
+	private String name;
 	
 	public Child(){
 		orientation = NORTH;
@@ -25,9 +26,22 @@ public class Child {
 		position = new Point(0,0);
 	}
 	
+	public Child(Point position, Orientation orientation, ArrayList<Movement> path, String name){
+		this.orientation = orientation;
+		this.path = path;
+		this.position = position;
+		this.name = name;
+		this.items = new ArrayList<Item>();
+	}
+	
 	public int getNbEggs(){
-		
-		return 0;
+		int nbEggs = 0;
+		for(Item i : items){
+			if(i instanceof Egg){
+				nbEggs ++;
+			}
+		}
+		return nbEggs;
 	}
 	
 	public void updateMovements(){
@@ -101,6 +115,20 @@ public class Child {
 		default:
 			break;
 		}
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

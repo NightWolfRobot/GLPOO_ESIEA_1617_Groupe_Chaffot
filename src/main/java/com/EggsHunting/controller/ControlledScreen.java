@@ -1,9 +1,11 @@
 package com.EggsHunting.controller;
+import org.apache.log4j.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public abstract class ControlledScreen {
-    
+	private static Logger log = Logger.getLogger(ControlledScreen.class);
     //protected Mediatheque       mediatheque;
     protected ScreenManager    sm;
     
@@ -13,7 +15,8 @@ public abstract class ControlledScreen {
 
     public void setDatas(Object o) {
         //mediatheque = (Mediatheque) o;
-        System.out.println("Mediatheque object loaded");
+        log.info("Datas from controlled screen has been set");
+        
     }
     
     public abstract void updateAfterLoadingScreen();

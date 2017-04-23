@@ -1,12 +1,16 @@
 package com.EggsHunting.controller;
 
 import java.util.HashMap;
+
+import org.apache.log4j.Logger;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 
 public class ScreenManager extends StackPane{
+	private static Logger log = Logger.getLogger(ScreenManager.class);
 	private HashMap<String, Node> screens = new HashMap<>();
     private HashMap<String, ControlledScreen> controllers = new HashMap<>();
     
@@ -52,7 +56,7 @@ public class ScreenManager extends StackPane{
             addController(name, myScreenControler);
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage()+" Le screen ne s'est pas chargé");
+            log.fatal(e.getMessage()+" Le screen ne s'est pas chargé");
             return false;
         }
     }
@@ -70,7 +74,7 @@ public class ScreenManager extends StackPane{
             }
             return true;
         } else {
-            System.out.println("screen hasn't been loaded!!! \n");
+            log.fatal("The screen hasn't been loaded !");
             return false;
         }
 
@@ -81,7 +85,7 @@ public class ScreenManager extends StackPane{
     //This method will remove the screen with the given name from the collection of screens
     public boolean unloadScreen(String name) {
         if (screens.remove(name) == null) {
-            System.out.println("Screen didn't exist");
+            log.error("Screen "+ name +" didn't exist");
             return false;
         } else {
             return true;
