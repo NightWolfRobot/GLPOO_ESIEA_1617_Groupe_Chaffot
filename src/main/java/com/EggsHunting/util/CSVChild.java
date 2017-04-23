@@ -16,18 +16,16 @@ import com.opencsv.CSVReader;
 public class CSVChild {
 	private static Logger log = Logger.getLogger(CSVChild.class);
 	private CSVReader reader;
+
 	
-	public CSVChild(){
+	public ArrayList<Child> getChildren(String path){ //  /csv/children.csv
 		try{
-			reader = new CSVReader(new InputStreamReader(getClass().getResourceAsStream("/csv/children.csv")), ' ');
+			reader = new CSVReader(new InputStreamReader(getClass().getResourceAsStream(path)), ' ');
 		}
 		catch(Exception e){
 			log.error("Impossible to access the CSV file"+ e.toString());
 		}
 		
-	}
-	
-	public ArrayList<Child> getChildren(){
 		ArrayList<Child> children = new ArrayList<>();
 		
 		String [] nextLine;
