@@ -13,7 +13,7 @@ public class MainApp extends Application {
 
     private static final Logger log = LoggerFactory.getLogger(MainApp.class);
     public static String screenHomeID = "Hello";
-    public static String screenHomeFile = "/fxml/hello.fxml";
+    public static String screenHomeFile = "/fxml/main.fxml";
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -31,11 +31,11 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         stage.setTitle("Home");
         //stage.getIcons().add(new Image("file:img/icon.png"));
+        scene.getStylesheets().addAll(this.getClass().getResource("/styles/styles.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     	
-        CSVChild csv = new CSVChild();
-        csv.getChildren("/csv/children.csv");
+        CSVChild.getChildren("/csv/children.csv");
         log.info("Starting Hello JavaFX and Maven demonstration application");
 
     }
