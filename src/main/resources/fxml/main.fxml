@@ -13,17 +13,17 @@
    <children>
       <VBox alignment="CENTER" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button id="record-sales" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="SIMULATION">
+            <Button id="record-sales" mnemonicParsing="false" onAction="#goToScreenSimulation" prefHeight="25.0" prefWidth="175.0" text="SIMULATION">
                <VBox.margin>
-                  <Insets bottom="50.0" />
+                  <Insets bottom="30.0" />
                </VBox.margin>
             </Button>
-            <Button id="record-sales" mnemonicParsing="false" prefWidth="150.0" text="WORLD BUILDER" />
+            <Button id="record-sales" mnemonicParsing="false" prefWidth="175.0" text="WORLD BUILDER" />
          </children>
       </VBox>
       <ImageView fx:id="logoImg" fitHeight="113.0" fitWidth="317.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
          <image>
-            <Image url="@/images/logoEggsHunting.png" />
+            <Image url="@../images/logoEggsHunting.png" />
          </image>
       </ImageView>
    </children>

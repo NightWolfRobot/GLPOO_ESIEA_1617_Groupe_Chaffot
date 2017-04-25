@@ -15,6 +15,9 @@ public class MainApp extends Application {
     private static final Logger log = LoggerFactory.getLogger(MainApp.class);
     public static String screenHomeID = "Hello";
     public static String screenHomeFile = "/fxml/main.fxml";
+    public static String screenSimulation ="Simulation";
+    public static String screenSimulationFile="/fxml/simulation.fxml";
+    
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -25,6 +28,7 @@ public class MainApp extends Application {
     	ScreenManager mainContainer = new ScreenManager();
 
     	mainContainer.loadScreen(MainApp.screenHomeID, MainApp.screenHomeFile, null);
+    	mainContainer.loadScreen(screenSimulation, screenSimulationFile, null);
     	mainContainer.setScreen(MainApp.screenHomeID);
     	
     	Group root = new Group();

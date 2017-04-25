@@ -20,6 +20,11 @@ public class HelloController extends ControlledScreen implements Initializable{
     @FXML private TextField lastNameField;
     @FXML private Label messageLabel;
     @FXML private ImageView logoImage;
+    
+    @FXML
+    public void goToScreenSimulation(){
+    	sm.setScreen(MainApp.screenSimulation);
+    }
 
     public void sayHello() {
 
