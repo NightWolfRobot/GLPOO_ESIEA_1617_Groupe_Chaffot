@@ -1,18 +1,25 @@
 package com.EggsHunting.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class HelloController extends ControlledScreen{
+public class HelloController extends ControlledScreen implements Initializable{
     private static final Logger log = LoggerFactory.getLogger(HelloController.class);
 
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
     @FXML private Label messageLabel;
+    @FXML private ImageView logoImage;
 
     public void sayHello() {
 
@@ -51,6 +58,12 @@ public class HelloController extends ControlledScreen{
 	@Override
 	public void updateDatas() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		
 	}
 

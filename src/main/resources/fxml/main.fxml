@@ -21,5 +21,10 @@
             <Button id="record-sales" mnemonicParsing="false" prefWidth="150.0" text="WORLD BUILDER" />
          </children>
       </VBox>
+      <ImageView fx:id="logoImg" fitHeight="113.0" fitWidth="317.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+         <image>
+            <Image url="@/images/logoEggsHunting.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

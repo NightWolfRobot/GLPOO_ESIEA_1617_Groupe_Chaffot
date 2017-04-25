@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import com.EggsHunting.util.CSVChild;
 
@@ -29,8 +30,8 @@ public class MainApp extends Application {
     	Group root = new Group();
         root.getChildren().addAll(mainContainer);
         Scene scene = new Scene(root);
-        stage.setTitle("Home");
-        //stage.getIcons().add(new Image("file:img/icon.png"));
+        stage.setTitle("EggsHunting Simulator");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logoIcon64.png")));
         scene.getStylesheets().addAll(this.getClass().getResource("/styles/styles.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
