@@ -6,13 +6,13 @@ public enum Orientation {
 	SOUTH("S"),
 	WEST("W");
 	
-	private final String name;
+	private final String abbr;
 	
-	private Orientation(String name){
-		this.name =  name;
+	private Orientation(String abbr){
+		this.abbr =  abbr;
 	}
 	
 	public String toString() {
-		return this.name;
+		return this.abbr;
 	}
 }

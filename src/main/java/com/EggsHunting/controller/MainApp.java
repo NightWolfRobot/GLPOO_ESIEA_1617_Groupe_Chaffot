@@ -1,5 +1,7 @@
 package com.EggsHunting.controller;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,7 +10,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import com.EggsHunting.model.Child;
+import com.EggsHunting.model.Garden;
 import com.EggsHunting.util.CSVChild;
+import com.EggsHunting.util.CSVGarden;
 
 public class MainApp extends Application {
 
@@ -40,8 +46,13 @@ public class MainApp extends Application {
         stage.setScene(scene);
         stage.show();
     	
-        CSVChild.getChildren("/csv/children.csv");
+        ArrayList<Child> children = CSVChild.getChildren("/csv/children.csv");
         log.info("Starting Hello JavaFX and Maven demonstration application");
+        Garden g = CSVGarden.getGarden("/csv/garden.csv");
+        
+        CSVChild.saveChildren("saveChildren", children);
+        CSVGarden.saveGarden("saveGarden", g.getGrid());
+        log.info("Done saving go check it!");
 
     }
 }

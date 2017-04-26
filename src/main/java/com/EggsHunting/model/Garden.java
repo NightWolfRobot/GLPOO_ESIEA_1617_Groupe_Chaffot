@@ -74,7 +74,7 @@ public class Garden {
 			return grid[x][y];
 		}
 		else{
-			log.error("Les coordonnées sont invalides et ne peuvent pas retourner la bonne cellule");
+			log.error("Les coordonnï¿½es sont invalides et ne peuvent pas retourner la bonne cellule");
 			return grid[0][0];
 		}
 	}
@@ -91,6 +91,10 @@ public class Garden {
 	 */
 	public void setChildren(ArrayList<Child> children) {
 		this.children = children;
+	}
+	
+	public Cell[][] getGrid(){
+		return this.grid;
 	}
 
 
