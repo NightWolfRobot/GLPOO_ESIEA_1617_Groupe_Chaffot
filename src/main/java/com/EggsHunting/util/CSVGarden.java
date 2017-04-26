@@ -74,7 +74,7 @@ public class CSVGarden {
 	}
 	
 	public static void saveGarden(String filename, Cell[][] grid){
-		String outputFile = "/csv/"+filename+".csv";
+		String outputFile = filename+".csv";
 		
 		// before we open the file check to see if it already exists
 		boolean alreadyExists = new File(outputFile).exists();
