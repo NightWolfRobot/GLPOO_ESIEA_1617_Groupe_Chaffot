@@ -1,6 +1,11 @@
 package com.EggsHunting.model;
 
 import java.util.ArrayList;
+import java.util.Random;
+
+import org.apache.log4j.Logger;
+
+import com.EggsHunting.util.CSVChild;
 
 import static com.EggsHunting.model.Movement.FORWARD;
 import static com.EggsHunting.model.Movement.LEFT;
@@ -18,20 +23,43 @@ public class Child {
 	private ArrayList<Movement> path;
 	private Point position; //X is horizontal and Y is vertical
 	private String name;
+	private int color;
+	private static Logger log = Logger.getLogger(Child.class);
 	
 	public Child(){
 		orientation = NORTH;
 		items = new ArrayList<Item>();
 		path = new ArrayList<Movement>();
 		position = new Point(0,0);
+		Random random = new Random();
+		color = random.nextInt(3) + 1;
+		log.info("New child orientation "+ orientation+"; color "+ color); 
+		
 	}
 	
+	/**
+	 * @return the color
+	 */
+	public int getColor() {
+		return color;
+	}
+
+	/**
+	 * @param color the color to set
+	 */
+	public void setColor(int color) {
+		this.color = color;
+	}
+
 	public Child(Point position, Orientation orientation, ArrayList<Movement> path, String name){
 		this.orientation = orientation;
 		this.path = path;
 		this.position = position;
 		this.name = name;
 		this.items = new ArrayList<Item>();
+		Random random = new Random();
+		color = random.nextInt(3) + 1;
+		log.info("New child orientation "+ orientation+"; color "+ color); 
 	}
 	
 	public Orientation getOrientation() {

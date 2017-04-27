@@ -11,36 +11,36 @@
 
 <AnchorPane id="pane2" prefHeight="700" prefWidth="1200" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.EggsHunting.controller.SimulationController">
    <children>
-      <BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #1b1b1b;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #cecece;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <Pane prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: #323232;" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: #d8d8d8;" BorderPane.alignment="CENTER" />
          </bottom>
          <top>
-            <HBox prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: #323232;" BorderPane.alignment="CENTER">
+            <HBox prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: #d8d8d8;" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="60.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="START">
+                  <Button id="btn-blue" mnemonicParsing="false" text="START">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="STOP">
+                  <Button id="btn-blue" mnemonicParsing="false" text="STOP">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#resetGrid" text="LOAD MAP">
+                  <Button id="btn-blue" mnemonicParsing="false" onAction="#resetGrid" text="LOAD MAP">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="LOAD CHILD">
+                  <Button id="btn-blue" mnemonicParsing="false" onAction="#loadChildren" text="LOAD CHILD">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="SAVE">
+                  <Button id="btn-blue" mnemonicParsing="false" onAction="#addItems" text="AddItems">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
@@ -63,7 +63,7 @@
             </HBox>
          </top>
          <center>
-            <StackPane fx:id="stackpane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #1b1b1b;" BorderPane.alignment="CENTER" />
+            <StackPane fx:id="stackpane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>
