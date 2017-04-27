@@ -38,7 +38,7 @@ public class CSVChild {
 			while ((nextLine = reader.readNext()) != null) {
 				//log.debug(nextLine[0]);
 			    // nextLine[] is an array of values from the line
-			    log.debug(nextLine[0] + " "+ nextLine[1] +" "+ nextLine[2] +" "+nextLine[3] +" "+ nextLine[4]); 
+			    //log.debug(nextLine[0] + " "+ nextLine[1] +" "+ nextLine[2] +" "+nextLine[3] +" "+ nextLine[4]); 
 			    children.add(new Child(turnStringIntoCoordinates(nextLine[1]), turnStringIntoOrientation(nextLine[2]), turnStringIntoPath(nextLine[3]), nextLine[4]));
 			    
 			 }
