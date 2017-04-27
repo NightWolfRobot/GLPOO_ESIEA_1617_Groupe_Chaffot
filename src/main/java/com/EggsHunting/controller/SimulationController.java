@@ -14,16 +14,20 @@ import com.EggsHunting.util.CSVChild;
 import com.EggsHunting.util.CSVGarden;
 import com.EggsHunting.view.DisplayGridSimulation;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 public class SimulationController extends ControlledScreen implements Initializable {
 	
 	@FXML StackPane stackpane;
 	
 	private DisplayGridSimulation display;
+	private Timeline loop = null;
 	private static final Logger log = LoggerFactory.getLogger(SimulationController.class);
 
 	@Override
@@ -75,6 +79,23 @@ public class SimulationController extends ControlledScreen implements Initializa
 		// TODO Auto-generated method stub
 
 	}
+	
+	@FXML
+	private void handleStop(){
+		if (loop != null) {
+            loop.stop();
+        }
+	}
+	
+	@FXML
+	public void handlePlay(){
+		loop = new Timeline(new KeyFrame(Duration.millis(300), e -> {
+            playOneRound();
+        }));
+        loop.setCycleCount(Timeline.INDEFINITE);
+        loop.play();
+	}
+	
 	
 	@FXML
 	public void playOneRound() {
