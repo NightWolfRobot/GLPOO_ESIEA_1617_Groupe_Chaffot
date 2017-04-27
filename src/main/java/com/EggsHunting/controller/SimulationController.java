@@ -1,5 +1,6 @@
 package com.EggsHunting.controller;
 
+import java.awt.Point;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -7,6 +8,7 @@ import java.util.ResourceBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.EggsHunting.model.Cell;
 import com.EggsHunting.model.Child;
 import com.EggsHunting.util.CSVChild;
 import com.EggsHunting.util.CSVGarden;
@@ -69,6 +71,54 @@ public class SimulationController extends ControlledScreen implements Initializa
 	public void updateDatas() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@FXML
+	public void playOneRound() {
+		ArrayList<Child> children = display.getGarden().getChildren();
+		Cell[][] grid = display.getGarden().getGrid();
+		for(Child child : children){
+			//check if position is in the grid, if not colliding with a rock and if there are eggs
+			Point currentPosition = child.getPosition();
+			int posX = (int) currentPosition.getX(), posY = (int) currentPosition.getY();
+			
+			Point nextPosition = child.getNextPosition();
+			if(nextPosition == null){
+				continue;
+			}
+			int nextPosX = (int) nextPosition.getX(), nextPosY = (int) nextPosition.getY();
+			if(nextPosX<0 || nextPosY<0 || nextPosX>grid.length || nextPosY>grid[0].length){
+				log.debug("Children trying to move out of the garden!");
+				child.getPath().remove(0);
+				
+			} else if(grid[nextPosX][nextPosY].isRock()){
+				log.debug("Children trying to move on a rock!");
+				child.getPath().remove(0);
+				
+			} else {
+				if(child.isPickingUpItem()){
+					//remove one egg from the Cell add it to the child item list
+					child.addItem(grid[posX][posY].removeEgg());
+					//set boolean isPickingUpItem to false
+					child.donePickingUpItem();
+					
+				} else {
+					child.move();
+					if(grid[posX][posY].hasEggs()){
+						//sets boolean isPickingUpItem to true
+						child.pickUpItem();
+					}
+				}
+			}
+		}
+		log.info("One step done");
+	}
+	
+	@FXML
+	public void saveGame(){
+		CSVChild.saveChildren("saveChildren", display.getGarden().getChildren());
+        CSVGarden.saveGarden("saveGarden", display.getGarden().getGrid());
+        log.info("Done saving");
 	}
 
 }

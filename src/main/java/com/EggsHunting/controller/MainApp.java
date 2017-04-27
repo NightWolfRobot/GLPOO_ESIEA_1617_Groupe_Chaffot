@@ -45,14 +45,10 @@ public class MainApp extends Application {
         scene.getStylesheets().addAll(this.getClass().getResource("/styles/styles.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-    	
+    	/*
         ArrayList<Child> children = CSVChild.getChildren("/csv/children.csv");
         log.info("Starting Hello JavaFX and Maven demonstration application");
         Garden g = CSVGarden.getGarden("/csv/garden.csv");
-        
-        CSVChild.saveChildren("saveChildren", children);
-        CSVGarden.saveGarden("saveGarden", g.getGrid());
-        log.info("Done saving go check it!");
-
+        */
     }
 }

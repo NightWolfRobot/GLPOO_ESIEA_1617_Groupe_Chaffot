@@ -32,6 +32,15 @@ public class Cell {
 		items.remove(i);
 	}
 	
+	public Egg removeEgg(){
+		for(Item i : items){
+			if(i instanceof Egg){
+				return (Egg) i;
+			}
+		}
+		return null;
+	}
+	
 	public boolean isRock(){
 		for(Item i: items){
 			if(i instanceof Rock){

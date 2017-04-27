@@ -24,6 +24,7 @@ public class Child {
 	private Point position; //X is horizontal and Y is vertical
 	private String name;
 	private int color;
+	private boolean isPickingUpItem;
 	private static Logger log = Logger.getLogger(Child.class);
 	
 	public Child(){
@@ -33,6 +34,7 @@ public class Child {
 		position = new Point(0,0);
 		Random random = new Random();
 		color = random.nextInt(3) + 1;
+		isPickingUpItem = false;
 		log.info("New child orientation "+ orientation+"; color "+ color); 
 		
 	}
@@ -104,6 +106,17 @@ public class Child {
 		return nbEggs;
 	}
 	
+	public boolean isPickingUpItem(){
+		return isPickingUpItem;
+	}
+	public void pickUpItem(){
+		isPickingUpItem = true;
+	}
+	
+	public void donePickingUpItem(){
+		isPickingUpItem = false;
+	}
+	
 	public void updateMovements(){
 		
 	}
@@ -117,58 +130,100 @@ public class Child {
 	}
 	
 	public void move(){
-		//need to be careful about the limits of the Grid!
-		//either in the controller directly or here with the size
-		//of the garden
+		//turn the child
+		this.turn();
+		//moves the child
+		position = this.getNextPosition();
+		//removes the movement from the path
+		path.remove(0);
+	}
+	
+	public Point getNextPosition(){
+		Movement  nextMove;
+		Point nextPosition= new Point((int)position.getX(), (int)position.getY());
+		if(path.isEmpty()){
+			nextMove = path.get(0);
+		} else {
+			return null;
+		}
+		
+		switch(orientation){
+		case NORTH:
+			if(nextMove == FORWARD){
+				nextPosition = new Point((int)position.getX(), (int)position.getY()-1); 
+			} else if(nextMove == RIGHT){
+				nextPosition = new Point((int)position.getX()+1, (int)position.getY());
+			} else if(nextMove == LEFT){
+				nextPosition = new Point((int)position.getX()-1, (int)position.getY());
+			}
+			break;
+		case EAST:
+			if(nextMove == FORWARD){
+				nextPosition = new Point((int)position.getX()+1, (int)position.getY());
+			} else if(nextMove == RIGHT){
+				nextPosition = new Point((int)position.getX(), (int)position.getY()+1);
+			} else if(nextMove == LEFT){
+				nextPosition = new Point((int)position.getX(), (int)position.getY()-1);
+			}
+			break;
+		case SOUTH:
+			if(nextMove == FORWARD){
+				nextPosition = new Point((int)position.getX(), (int)position.getY()+1);
+			} else if(nextMove == RIGHT){
+				nextPosition = new Point((int)position.getX()-1, (int)position.getY());
+			} else if(nextMove == LEFT){
+				nextPosition = new Point((int)position.getX()+1, (int)position.getY());
+			}
+			break;
+		case WEST:
+			if(nextMove == FORWARD){
+				nextPosition = new Point((int)position.getX()-1, (int)position.getY());
+			} else if(nextMove == RIGHT){
+				nextPosition = new Point((int)position.getX(), (int)position.getY()-1);
+			} else if(nextMove == LEFT){
+				nextPosition = new Point((int)position.getX(), (int)position.getY()+1);
+			}
+			break;
+		default:
+			break;
+		}
+		return nextPosition;
+	}
+	
+	public void turn(){
 		Movement  nextMove;
 		if(path.isEmpty()){
-			nextMove = path.remove(0);
+			nextMove = path.get(0);
 		} else {
 			return ;
 		}
 		
 		switch(orientation){
 		case NORTH:
-			if(nextMove == FORWARD){
-				position.setLocation(position.getX(), position.getY()-1); 
-			} else if(nextMove == RIGHT){
-				position.setLocation(position.getX()+1, position.getY());
+			if(nextMove == RIGHT){
 				orientation = EAST;
 			} else if(nextMove == LEFT){
-				position.setLocation(position.getX()-1, position.getY());
 				orientation = WEST;
 			}
 			break;
 		case EAST:
-			if(nextMove == FORWARD){
-				position.setLocation(position.getX()+1, position.getY());
-			} else if(nextMove == RIGHT){
-				position.setLocation(position.getX(), position.getY()+1);
+			if(nextMove == RIGHT){
 				orientation = SOUTH;
 			} else if(nextMove == LEFT){
-				position.setLocation(position.getX(), position.getY()-1);
 				orientation = NORTH;
 			}
 			break;
 		case SOUTH:
-			if(nextMove == FORWARD){
-				position.setLocation(position.getX(), position.getY()+1);
-			} else if(nextMove == RIGHT){
-				position.setLocation(position.getX()-1, position.getY());
+			if(nextMove == RIGHT){
 				orientation = WEST;
 			} else if(nextMove == LEFT){
-				position.setLocation(position.getX()+1, position.getY());
 				orientation = EAST;
 			}
 			break;
 		case WEST:
-			if(nextMove == FORWARD){
-				position.setLocation(position.getX()-1, position.getY());
-			} else if(nextMove == RIGHT){
-				position.setLocation(position.getX(), position.getY()-1);
+			if(nextMove == RIGHT){
 				orientation = NORTH;
 			} else if(nextMove == LEFT){
-				position.setLocation(position.getX(), position.getY()+1);
 				orientation = SOUTH;
 			}
 			break;
