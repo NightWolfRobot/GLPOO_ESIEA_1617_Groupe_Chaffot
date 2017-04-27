@@ -92,7 +92,7 @@ public class SimulationController extends ControlledScreen implements Initializa
 			}
 			
 			int nextPosX = (int) nextPosition.getX(), nextPosY = (int) nextPosition.getY();
-			if(nextPosX<0 || nextPosY<0 || nextPosX>grid.length || nextPosY>grid[0].length){
+			if(nextPosX<0 || nextPosY<0 || nextPosX>=grid.length || nextPosY>=grid[0].length){
 				log.debug("Children trying to move out of the garden!");
 				child.getPath().remove(0);
 				child.turn();
