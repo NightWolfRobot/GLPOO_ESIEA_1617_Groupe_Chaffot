@@ -36,10 +36,22 @@ public class SimulationController extends ControlledScreen implements Initializa
 		initGrid();
 	}
 	
+    @FXML
+    public void goToScreenHome(){
+    	sm.setScreen(MainApp.screenHomeID);
+    }
+	
 	private void initGrid(){
 		stackpane.getChildren().clear();
 		stackpane.getChildren().add(new Group(display));
 		log.info("Reset grid");
+	}
+	
+	@FXML
+	private void resetWorld(){
+		display = new DisplayGridSimulation(CSVGarden.getGarden("/csv/garden.csv"));
+		initGrid();
+		display.addItems();
 	}
 	
 	@FXML
@@ -96,6 +108,15 @@ public class SimulationController extends ControlledScreen implements Initializa
         loop.play();
 	}
 	
+	@FXML
+	public void handleLoadGarden(){
+		
+	}
+	
+	@FXML
+	public void handleLoadChildren(){
+		
+	}
 	
 	@FXML
 	public void playOneRound() {

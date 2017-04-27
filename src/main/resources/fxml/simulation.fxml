@@ -16,11 +16,17 @@
             <Pane prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: #d8d8d8;" BorderPane.alignment="CENTER" />
          </bottom>
          <top>
-            <HBox prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: #d8d8d8;" BorderPane.alignment="CENTER">
+            <HBox prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: #d8d8d8;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="60.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="60.0" fitWidth="225.0" onMouseClicked="#goToScreenHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logoSimulation.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="2.0" />
+                     </HBox.margin></ImageView>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button id="btn-blue" mnemonicParsing="false" onAction="#handlePlay" text="►">
+                  <Button id="btn-green" mnemonicParsing="false" onAction="#handlePlay" text="►">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
@@ -30,45 +36,36 @@
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="btn-blue" mnemonicParsing="false" onAction="#handleStop" text="||">
+                  <Button id="btn-red" mnemonicParsing="false" onAction="#handleStop" text="||">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="btn-blue" mnemonicParsing="false" onAction="#resetGrid" text="LOAD MAP">
+                  <Button id="btn-blue" mnemonicParsing="false" onAction="#resetWorld" text="Default garden">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="btn-blue" mnemonicParsing="false" onAction="#loadChildren" text="LOAD CHILD">
+                  <Button id="btn-blue" mnemonicParsing="false" onAction="#loadChildren" text="Default children">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="btn-blue" mnemonicParsing="false" onAction="#addItems" text="AddItems">
+                  <Button id="btn-blue-dark" mnemonicParsing="false" onAction="#handleLoadGarden" text="Load garden File">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="btn-blue" mnemonicParsing="false" onAction="#saveGame" text="SAVE">
+                  <Button id="btn-blue-dark" mnemonicParsing="false" text="Load children File">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Region prefHeight="60.0" prefWidth="89.0" HBox.hgrow="ALWAYS" />
-                  <Label text="NBEGGS 0" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
+                  <Button id="record-sales" mnemonicParsing="false" onAction="#saveGame" text="Save">
                      <HBox.margin>
-                        <Insets right="20.0" top="10.0" />
+                        <Insets right="20.0" top="15.0" />
                      </HBox.margin>
-                  </Label>
-                  <Label text="LAP 0" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </Label>
+                  </Button>
                </children>
             </HBox>
          </top>
