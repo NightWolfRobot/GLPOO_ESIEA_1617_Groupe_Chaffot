@@ -116,20 +116,20 @@ public class DisplayGridSimulation extends GridPane {
 				 
 				 //ImageView iv = new ImageView();
 				 String background="";
-				 	if(i ==0 || i== garden.getX()+1){
+				 if(j ==0 || j== garden.getY()+1){
 	                    background ="/images/treeside.png";
 	                } 
-				 	else if(j ==0){
+				 	else if(i ==0){
 	                    background ="/images/treetop.png";
 	                }
-				 	else if(j == garden.getY() +1){
+				 	else if(i == garden.getX() +1){
 	                	background ="/images/treedown.png";
 	                }
 	                else{
 	                	background ="/images/groundg.png";
 	                }
 				 //iv.setImage(new Image(getClass().getResourceAsStream(background)));
-				 this.add(new DisplayCell(new Image(getClass().getResourceAsStream(background))), i, j);
+				 this.add(new DisplayCell(new Image(getClass().getResourceAsStream(background))), j, i);
 			 }
 		 }
 	}
