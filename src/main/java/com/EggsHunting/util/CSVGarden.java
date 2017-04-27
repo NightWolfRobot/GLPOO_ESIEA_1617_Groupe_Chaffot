@@ -68,8 +68,9 @@ public class CSVGarden {
 	
 	private static Point turnStringIntoCoordinates(String str){
 		Point p = new Point();
-		p.x = Integer.parseInt(""+str.charAt(0)); 
-		p.y = Integer.parseInt(""+str.charAt(2)); 
+		p.x = Integer.parseInt(""+str.charAt(0))-1; 
+		p.y = Integer.parseInt(""+str.charAt(2))-1; 
+		log.debug("StringIntoCoords : x:"+p.x+" y:"+p.y);
 		return p;
 	}
 	
