@@ -41,8 +41,11 @@ public class SimulationController extends ControlledScreen implements Initializa
 	@FXML
 	private void resetGrid(){
 		display.resetCells();
+		if(display.getGarden().getChildren() != null){
+			display.addChildren();
+		}
 		display.addItems();
-		display.addChildren();
+		
 	}
 	
 	@FXML

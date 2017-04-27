@@ -84,7 +84,7 @@ public class DisplayGridSimulation extends GridPane {
 	
 	public void addChildren(){
 		for(Child c: garden.getChildren()){
-			if(c.getPosition().x >= 0 && c.getPosition().x <= garden.getX() && c.getPosition().y >=0 && c.getPosition().y <= garden.getY()){
+			if(c.getPosition().x >= 0 && c.getPosition().x < garden.getX() && c.getPosition().y >=0 && c.getPosition().y < garden.getY()){
 				
 				DisplayCell sp = (DisplayCell) this.getNodeFromGridPane(c.getPosition().x+1, c.getPosition().y+1);
 				ImageView iv = new ImageView();

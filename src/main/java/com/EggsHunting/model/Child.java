@@ -33,10 +33,21 @@ public class Child {
 		path = new ArrayList<Movement>();
 		position = new Point(0,0);
 		Random random = new Random();
-		color = random.nextInt(3) + 1;
+		color = random.nextInt(6) + 1;
 		isPickingUpItem = false;
 		log.info("New child orientation "+ orientation+"; color "+ color); 
 		
+	}
+	
+	public Child(Point position, Orientation orientation, ArrayList<Movement> path, String name){
+		this.orientation = orientation;
+		this.path = path;
+		this.position = position;
+		this.name = name;
+		this.items = new ArrayList<Item>();
+		Random random = new Random();
+		color = random.nextInt(6) + 1;
+		log.info("New child orientation "+ orientation+"; color "+ color); 
 	}
 	
 	/**
@@ -53,16 +64,7 @@ public class Child {
 		this.color = color;
 	}
 
-	public Child(Point position, Orientation orientation, ArrayList<Movement> path, String name){
-		this.orientation = orientation;
-		this.path = path;
-		this.position = position;
-		this.name = name;
-		this.items = new ArrayList<Item>();
-		Random random = new Random();
-		color = random.nextInt(3) + 1;
-		log.info("New child orientation "+ orientation+"; color "+ color); 
-	}
+	
 	
 	public Orientation getOrientation() {
 		return orientation;

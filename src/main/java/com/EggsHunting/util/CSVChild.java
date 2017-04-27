@@ -71,8 +71,9 @@ public class CSVChild {
 	
 	private static Point turnStringIntoCoordinates(String str){
 		Point p = new Point();
-		p.x = Integer.parseInt(""+str.charAt(0)); 
-		p.y = Integer.parseInt(""+str.charAt(2)); 
+		String[] parts = str.split("-");
+		p.x = Integer.parseInt(""+parts[0])-1; 
+		p.y = Integer.parseInt(""+parts[1])-1; 
 		return p;
 	}
 	
