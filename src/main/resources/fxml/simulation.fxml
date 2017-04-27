@@ -25,7 +25,7 @@
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="btn-blue" mnemonicParsing="false" text="►|">
+                  <Button id="btn-blue" mnemonicParsing="false" onAction="#playOneRound" text="►|">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
@@ -50,7 +50,7 @@
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="btn-blue" mnemonicParsing="false" text="SAVE">
+                  <Button id="btn-blue" mnemonicParsing="false" onAction="#saveGame" text="SAVE">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>

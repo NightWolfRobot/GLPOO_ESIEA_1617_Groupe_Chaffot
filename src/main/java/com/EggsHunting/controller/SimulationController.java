@@ -90,10 +90,12 @@ public class SimulationController extends ControlledScreen implements Initializa
 			if(nextPosX<0 || nextPosY<0 || nextPosX>grid.length || nextPosY>grid[0].length){
 				log.debug("Children trying to move out of the garden!");
 				child.getPath().remove(0);
+				child.turn();
 				
 			} else if(grid[nextPosX][nextPosY].isRock()){
 				log.debug("Children trying to move on a rock!");
 				child.getPath().remove(0);
+				child.turn();
 				
 			} else {
 				if(child.isPickingUpItem()){
@@ -111,6 +113,7 @@ public class SimulationController extends ControlledScreen implements Initializa
 				}
 			}
 		}
+		resetGrid();	
 		log.info("One step done");
 	}
 	

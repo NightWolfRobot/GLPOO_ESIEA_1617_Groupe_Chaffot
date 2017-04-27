@@ -109,6 +109,7 @@ public class Child {
 	public boolean isPickingUpItem(){
 		return isPickingUpItem;
 	}
+	
 	public void pickUpItem(){
 		isPickingUpItem = true;
 	}

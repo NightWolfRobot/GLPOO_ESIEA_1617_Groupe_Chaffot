@@ -35,7 +35,9 @@ public class Cell {
 	public Egg removeEgg(){
 		for(Item i : items){
 			if(i instanceof Egg){
-				return (Egg) i;
+				Egg res = (Egg) i;
+				items.remove(i);
+				return res;
 			}
 		}
 		return null;
