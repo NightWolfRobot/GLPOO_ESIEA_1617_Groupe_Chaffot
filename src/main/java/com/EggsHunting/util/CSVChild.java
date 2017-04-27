@@ -86,8 +86,8 @@ public class CSVChild {
 		}
 	}
 	
-	public static boolean saveChildren(String filename, ArrayList<Child> children){
-String outputFile = "users.csv";
+	public static void saveChildren(String filename, ArrayList<Child> children){
+		String outputFile = filename+".csv";
 		
 		// before we open the file check to see if it already exists
 		boolean alreadyExists = new File(outputFile).exists();
@@ -95,7 +95,7 @@ String outputFile = "users.csv";
 			log.info("The file to save in already exists");
 		}
 		try{
-			writer = new CSVWriter(new FileWriter(filename+".csv"), '\t');
+			writer = new CSVWriter(new FileWriter(outputFile), '\t', CSVWriter.NO_QUOTE_CHARACTER);
 		}catch(IOException e){
 			log.error("Impossible to access the CSV file to save"+ e.toString());
 		}
@@ -107,7 +107,7 @@ String outputFile = "users.csv";
 	    	line = new String[5];
 	    	line[0] = "E"; //Child
 	    	Point p = child.getPosition();
-	    	line[1] = String.valueOf(p.getX())+"-"+String.valueOf(p.getY()); //position
+	    	line[1] = String.valueOf((int)p.getX())+"-"+String.valueOf((int)p.getY()); //position
 	    	line[2] = child.getOrientation().toString(); //orientation
 	    	ArrayList<Movement> path = child.getPath();
 	    	line[3] = pathToString(path); //movements
@@ -122,7 +122,7 @@ String outputFile = "users.csv";
 	    	log.error("Impossible to close CSV writer"+ e.toString());
 	    }
 	    
-		return true;
+		//return true;
 	}
 	
 	private static String pathToString(ArrayList<Movement> path){

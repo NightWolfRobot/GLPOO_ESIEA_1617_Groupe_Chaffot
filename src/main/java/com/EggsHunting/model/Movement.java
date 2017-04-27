@@ -5,13 +5,13 @@ public enum Movement {
 	RIGHT("D"),
 	LEFT("G");
 	
-	private final String name;
+	private final String abbr;
 	
-	private Movement(String name){
-		this.name =  name;
+	private Movement(String abbr){
+		this.abbr =  abbr;
 	}
 	
 	public String toString() {
-		return this.name;
+		return this.abbr;
 	}
 }
