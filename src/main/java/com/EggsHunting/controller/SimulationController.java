@@ -84,8 +84,10 @@ public class SimulationController extends ControlledScreen implements Initializa
 			
 			Point nextPosition = child.getNextPosition();
 			if(nextPosition == null){
+				log.debug("Next position is null");
 				continue;
 			}
+			
 			int nextPosX = (int) nextPosition.getX(), nextPosY = (int) nextPosition.getY();
 			if(nextPosX<0 || nextPosY<0 || nextPosX>grid.length || nextPosY>grid[0].length){
 				log.debug("Children trying to move out of the garden!");
@@ -103,16 +105,26 @@ public class SimulationController extends ControlledScreen implements Initializa
 					child.addItem(grid[posX][posY].removeEgg());
 					//set boolean isPickingUpItem to false
 					child.donePickingUpItem();
+					log.info("Egg picked up");
 					
+				} else if(grid[nextPosX][nextPosY].hasChild()){
+					log.debug("Children trying to move on another child!");
+					continue;
 				} else {
+					log.info("Position before "+child.getPosition().toString());
+					
 					child.move();
-					if(grid[posX][posY].hasEggs()){
+					grid[posX][posY].childLeaving();
+					grid[nextPosX][nextPosY].childSteppingIn();
+					log.info("Position after "+child.getPosition().toString());
+					if(grid[nextPosX][nextPosY].hasEggs()){
 						//sets boolean isPickingUpItem to true
 						child.pickUpItem();
 					}
 				}
 			}
 		}
+		log.info("Resetting grid");
 		resetGrid();	
 		log.info("One step done");
 	}

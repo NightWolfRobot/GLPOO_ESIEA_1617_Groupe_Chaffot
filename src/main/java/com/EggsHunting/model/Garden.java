@@ -1,5 +1,6 @@
 package com.EggsHunting.model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -66,6 +67,11 @@ public class Garden {
 			for(int j =0; j< y; j++){
 				grid[i][j] = new Cell();
 			}
+		}
+		for(Child child : children){
+			Point currentPosition = child.getPosition();
+			int posX = (int) currentPosition.getX(), posY = (int) currentPosition.getY();
+			grid[posX][posY].childSteppingIn();
 		}
 	}
 	

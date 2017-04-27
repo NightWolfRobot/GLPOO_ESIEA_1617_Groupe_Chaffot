@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Cell {
 	private ArrayList<Item> items;
+	private boolean hasChild;
 	
 	public Cell (){
 		items = new ArrayList<>();
@@ -16,6 +17,18 @@ public class Cell {
 			}
 		}
 		return false;
+	}
+	
+	public boolean hasChild(){
+		return hasChild;
+	}
+	
+	public void childSteppingIn(){
+		hasChild = true;
+	}
+	
+	public void childLeaving(){
+		hasChild = false;
 	}
 	
 	public int getNbEggs(){

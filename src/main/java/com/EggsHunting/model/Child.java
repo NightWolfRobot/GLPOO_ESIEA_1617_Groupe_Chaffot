@@ -134,7 +134,7 @@ public class Child {
 		//turn the child
 		this.turn();
 		//moves the child
-		position = this.getNextPosition();
+		position = this.getNextPosition(); //new Point((int)position.getX()+1, (int)position.getY()); 
 		//removes the movement from the path
 		path.remove(0);
 	}
@@ -142,7 +142,7 @@ public class Child {
 	public Point getNextPosition(){
 		Movement  nextMove;
 		Point nextPosition= new Point((int)position.getX(), (int)position.getY());
-		if(path.isEmpty()){
+		if(!path.isEmpty()){
 			nextMove = path.get(0);
 		} else {
 			return null;
