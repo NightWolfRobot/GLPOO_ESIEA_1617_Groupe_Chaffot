@@ -133,10 +133,11 @@ public class Child {
 	}
 	
 	public void move(){
+		
+		//moves the child
+		position = this.getNextPosition(); 
 		//turn the child
 		this.turn();
-		//moves the child
-		position = this.getNextPosition(); //new Point((int)position.getX()+1, (int)position.getY()); 
 		//removes the movement from the path
 		path.remove(0);
 	}
@@ -149,42 +150,43 @@ public class Child {
 		} else {
 			return null;
 		}
-		
+		log.debug("NEXT - Child orientation "+this.orientation);
 		switch(orientation){
 		case NORTH:
 			if(nextMove == FORWARD){
-				nextPosition = new Point((int)position.getX(), (int)position.getY()-1); 
+				nextPosition = new Point((int)position.getX()-1, (int)position.getY()); 
 			} else if(nextMove == RIGHT){
-				nextPosition = new Point((int)position.getX()+1, (int)position.getY());
+				nextPosition = new Point((int)position.getX(), (int)position.getY()+1);
 			} else if(nextMove == LEFT){
-				nextPosition = new Point((int)position.getX()-1, (int)position.getY());
+				nextPosition = new Point((int)position.getX(), (int)position.getY()-1);
 			}
 			break;
 		case EAST:
 			if(nextMove == FORWARD){
-				nextPosition = new Point((int)position.getX()+1, (int)position.getY());
-			} else if(nextMove == RIGHT){
 				nextPosition = new Point((int)position.getX(), (int)position.getY()+1);
+			} else if(nextMove == RIGHT){
+				nextPosition = new Point((int)position.getX()+1, (int)position.getY());
 			} else if(nextMove == LEFT){
-				nextPosition = new Point((int)position.getX(), (int)position.getY()-1);
+				nextPosition = new Point((int)position.getX()-1, (int)position.getY());
 			}
 			break;
 		case SOUTH:
 			if(nextMove == FORWARD){
-				nextPosition = new Point((int)position.getX(), (int)position.getY()+1);
-			} else if(nextMove == RIGHT){
-				nextPosition = new Point((int)position.getX()-1, (int)position.getY());
-			} else if(nextMove == LEFT){
 				nextPosition = new Point((int)position.getX()+1, (int)position.getY());
-			}
-			break;
-		case WEST:
-			if(nextMove == FORWARD){
-				nextPosition = new Point((int)position.getX()-1, (int)position.getY());
 			} else if(nextMove == RIGHT){
 				nextPosition = new Point((int)position.getX(), (int)position.getY()-1);
 			} else if(nextMove == LEFT){
 				nextPosition = new Point((int)position.getX(), (int)position.getY()+1);
+			}
+			break;
+		case WEST:
+			if(nextMove == FORWARD){
+				nextPosition = new Point((int)position.getX(), (int)position.getY()-1);
+			} else if(nextMove == RIGHT){
+				nextPosition = new Point((int)position.getX()-1, (int)position.getY());
+				log.debug("Facing WEST + D : "+nextPosition.getX()+"-"+nextPosition.getY());
+			} else if(nextMove == LEFT){
+				nextPosition = new Point((int)position.getX()+1, (int)position.getY());
 			}
 			break;
 		default:
@@ -200,7 +202,7 @@ public class Child {
 		} else {
 			return ;
 		}
-		
+		log.debug("TURN - Child orientation "+this.orientation);
 		switch(orientation){
 		case NORTH:
 			if(nextMove == RIGHT){

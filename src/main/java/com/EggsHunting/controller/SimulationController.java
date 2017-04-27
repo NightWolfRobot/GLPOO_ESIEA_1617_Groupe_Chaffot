@@ -111,15 +111,13 @@ public class SimulationController extends ControlledScreen implements Initializa
 					log.info("Egg picked up");
 					
 				} else if(grid[nextPosX][nextPosY].hasChild()){
+					child.turn();
 					log.debug("Children trying to move on another child!");
 					continue;
-				} else {
-					log.info("Position before "+child.getPosition().toString());
-					
+				} else {					
 					child.move();
 					grid[posX][posY].childLeaving();
 					grid[nextPosX][nextPosY].childSteppingIn();
-					log.info("Position after "+child.getPosition().toString());
 					if(grid[nextPosX][nextPosY].hasEggs()){
 						//sets boolean isPickingUpItem to true
 						child.pickUpItem();
