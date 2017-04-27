@@ -193,7 +193,7 @@ public class Child {
 	
 	public void turn(){
 		Movement  nextMove;
-		if(path.isEmpty()){
+		if(!path.isEmpty()){
 			nextMove = path.get(0);
 		} else {
 			return ;

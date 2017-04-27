@@ -68,10 +68,12 @@ public class Garden {
 				grid[i][j] = new Cell();
 			}
 		}
-		for(Child child : children){
-			Point currentPosition = child.getPosition();
-			int posX = (int) currentPosition.getX(), posY = (int) currentPosition.getY();
-			grid[posX][posY].childSteppingIn();
+		if(children!=null){
+			for(Child child : children){
+				Point currentPosition = child.getPosition();
+				int posX = (int) currentPosition.getX(), posY = (int) currentPosition.getY();
+				grid[posX][posY].childSteppingIn();
+			}
 		}
 	}
 	
@@ -97,6 +99,13 @@ public class Garden {
 	 */
 	public void setChildren(ArrayList<Child> children) {
 		this.children = children;
+		if(children!=null){
+			for(Child child : children){
+				Point currentPosition = child.getPosition();
+				int posX = (int) currentPosition.getX(), posY = (int) currentPosition.getY();
+				grid[posX][posY].childSteppingIn();
+			}
+		}
 	}
 	
 	public Cell[][] getGrid(){
