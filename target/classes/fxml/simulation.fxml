@@ -20,12 +20,17 @@
                <children>
                   <ImageView fitHeight="60.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button id="btn-blue" mnemonicParsing="false" text="START">
+                  <Button id="btn-blue" mnemonicParsing="false" text="►">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="btn-blue" mnemonicParsing="false" text="STOP">
+                  <Button id="btn-blue" mnemonicParsing="false" onAction="#playOneRound" text="►|">
+                     <HBox.margin>
+                        <Insets right="20.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="btn-blue" mnemonicParsing="false" text="||">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
@@ -41,6 +46,11 @@
                      </HBox.margin>
                   </Button>
                   <Button id="btn-blue" mnemonicParsing="false" onAction="#addItems" text="AddItems">
+                     <HBox.margin>
+                        <Insets right="20.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="btn-blue" mnemonicParsing="false" onAction="#saveGame" text="SAVE">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
