@@ -6,18 +6,27 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import com.EggsHunting.model.Child;
+import com.EggsHunting.view.DisplayCell;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 public class EndController extends ControlledScreen implements Initializable {
 	
 	@FXML TableView tableView;
 	@FXML LineChart lineChart;
+	@FXML ScrollPane scrollPane;
 	
 	public void goToScreenHome(){
 		sm.setScreen(MainApp.screenHomeID);
@@ -121,9 +130,10 @@ public class EndController extends ControlledScreen implements Initializable {
 
 	@Override
 	public void updateDatas() {
-		   lineChart.setTitle("Oeufs au cours du temps par enfant");
+			lineChart.getData().clear();
+		    lineChart.setTitle("Oeufs au cours du temps par enfant");
 	        HashMap<Child, ArrayList<Integer>> chartValues = getChartValues();
-	        
+	        HashMap<Child, Integer> resultTable = new HashMap();
 	        for (Child c : chartValues.keySet()) {
 	        	XYChart.Series series = new XYChart.Series();
 	        	series.setName(c.getName());
@@ -133,10 +143,32 @@ public class EndController extends ControlledScreen implements Initializable {
 	        		cmpt += values.get(i);
 	        		series.getData().add(new XYChart.Data(i+1, cmpt));
 	        	}
+	        	resultTable.put(c, cmpt);
 	        	lineChart.getData().add(series);
 	        	
 	            //System.out.println("clé: "+mapentry.getKey() + " | valeur: " + mapentry.getValue());
 	         }
+	        
+	        for(Child c: resultTable.keySet()){
+	        	//tableView.getColumns().addAll(c.getName(), resultTable.get(c));
+	        }
+	        
+	        GridPane gp = new GridPane();
+	       ColumnConstraints col1 = new ColumnConstraints(70);
+	       ColumnConstraints col2 = new ColumnConstraints(70);
+	       ColumnConstraints col3 = new ColumnConstraints(60);
+	       gp.getColumnConstraints().addAll(col1,col2,col3);
+	        int cmpt = 0;
+	        for(Child c : resultTable.keySet()){
+	        	Image img = new Image(getClass().getResourceAsStream("/images/child"+c.getColor()+"front.png"));
+	        	gp.add(new DisplayCell(img), 0, cmpt);
+	        	gp.add(new Label(c.getName()), 1, cmpt);
+	        	
+	        	gp.add(new Label(resultTable.get(c)+""), 2, cmpt);
+	        	cmpt ++;
+	        }
+	        
+	        scrollPane.setContent(gp);
 		
 	}
 	
