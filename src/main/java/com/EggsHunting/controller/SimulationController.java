@@ -33,6 +33,7 @@ public class SimulationController extends ControlledScreen implements Initializa
 	private Timeline loop = null;
 	private FileChooser fileChooser = new FileChooser();
 	private static final Logger log = LoggerFactory.getLogger(SimulationController.class);
+	private ArrayList<ArrayList<Child>> result = new ArrayList();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -151,6 +152,8 @@ public class SimulationController extends ControlledScreen implements Initializa
 	public void playOneRound() {
 		ArrayList<Child> children = display.getGarden().getChildren();
 		Cell[][] grid = display.getGarden().getGrid();
+		ArrayList<Child> gagnants = new ArrayList<>();
+		result.add(gagnants);
 		for(Child child : children){
 			//check if position is in the grid, if not colliding with a rock and if there are eggs
 			Point currentPosition = child.getPosition();
@@ -180,7 +183,7 @@ public class SimulationController extends ControlledScreen implements Initializa
 					//set boolean isPickingUpItem to false
 					child.donePickingUpItem();
 					log.info("Egg picked up");
-					
+					gagnants.add(child);
 				} else if(grid[nextPosX][nextPosY].hasChild()){
 					child.turn();
 					log.debug("Children trying to move on another child!");
