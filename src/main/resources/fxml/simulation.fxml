@@ -56,7 +56,7 @@
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="btn-blue-dark" mnemonicParsing="false" text="Load children File">
+                  <Button id="btn-blue-dark" mnemonicParsing="false" onAction="#handleLoadChildren" text="Load children File">
                      <HBox.margin>
                         <Insets right="20.0" top="15.0" />
                      </HBox.margin>

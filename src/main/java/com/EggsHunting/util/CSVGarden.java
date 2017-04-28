@@ -1,9 +1,13 @@
 package com.EggsHunting.util;
 
 import java.awt.Point;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.apache.log4j.Logger;
@@ -67,6 +71,67 @@ public class CSVGarden {
 	
 	
 	
+	public static Garden getGardenFromPath(String path){
+		//InputStream input;
+        //InputStreamReader ipsr;
+        //BufferedReader br;
+        
+        log.debug("getGardenFromPath method");
+        
+     
+		try{
+			/*log.debug("Start Reading file");
+			input = new FileInputStream(path);
+			log.debug("input OK");
+            ipsr = new InputStreamReader(input);
+            br = new BufferedReader(ipsr);
+            String str="";
+            while ((str = br.readLine()) != null) {
+            	System.out.println(str);
+            }
+            */
+			reader = new CSVReader(new FileReader(path), ' ');
+		}
+		catch(Exception e){
+			log.error("Impossible to access the CSV file"+ e.toString());
+		}
+		Garden garden = new Garden(0,0);
+		
+		String [] nextLine;
+		
+	     try {
+	    	log.debug("Debut du parsing");
+			while ((nextLine = reader.readNext()) != null) {
+				/*
+				J 6 5
+				C 4-2 1
+				C 1-4 3
+				R 5-3 */
+				if(nextLine[0].equals("J")){
+					garden = new Garden(Integer.parseInt(nextLine[1]), Integer.parseInt(nextLine[2]));
+					log.debug("Create garden x="+ nextLine[1]+" y="+ nextLine[2]);
+				}else if(nextLine[0].equals("R")){
+					Point p = turnStringIntoCoordinates(nextLine[1]);
+					Cell c = garden.getCell(p.x, p.y);
+					c.getItems().add(new Rock());
+				}else if(nextLine[0].equals("C")){
+					Point p = turnStringIntoCoordinates(nextLine[1]);
+					Cell c = garden.getCell(p.x, p.y);
+					int nb = Integer.parseInt(nextLine[2]);
+					for(int i=0; i< nb; i++){
+						c.getItems().add(new Egg());
+					}
+				}
+			 }
+		} catch (IOException e) {
+			log.fatal("Erreur lors du parsing du CSV");
+			//e.printStackTrace();
+		}
+		
+		log.info("Garden loaded from CSV");
+		
+		return garden;
+	}
 	
 	private static Point turnStringIntoCoordinates(String str){
 		Point p = new Point();
@@ -85,7 +150,7 @@ public class CSVGarden {
 			log.info("The file to save in already exists");
 		}
 		try{
-			writer = new CSVWriter(new FileWriter(outputFile), '\t', CSVWriter.NO_QUOTE_CHARACTER);
+			writer = new CSVWriter(new FileWriter(outputFile), ' ', CSVWriter.NO_QUOTE_CHARACTER);
 		}catch(IOException e){
 			log.error("Impossible to access the CSV file to save"+ e.toString());
 		}
@@ -107,11 +172,11 @@ public class CSVGarden {
 		    	if(cell.isRock()){
 		    		line = new String[2];
 		    		line[0] = "R";
-		    		line[1] = String.valueOf(i)+"-"+String.valueOf(j);
+		    		line[1] = String.valueOf(i+1)+"-"+String.valueOf(j+1);
 		    	} else if(cell.hasEggs()) { 
 		    		line = new String[3];
 		    		line[0] = "C";
-		    		line[1] = String.valueOf(i)+"-"+String.valueOf(j);
+		    		line[1] = String.valueOf(i+1)+"-"+String.valueOf(j+1);
 		    		line[2] = String.valueOf(cell.getNbEggs());
 		    	} else {
 		    		continue;

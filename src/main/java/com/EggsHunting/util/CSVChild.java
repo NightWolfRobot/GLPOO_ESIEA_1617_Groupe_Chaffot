@@ -2,6 +2,7 @@ package com.EggsHunting.util;
 
 import java.awt.Point;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,6 +26,36 @@ public class CSVChild {
 	public static ArrayList<Child> getChildren(String path){ //  /csv/children.csv
 		try{
 			reader = new CSVReader(new InputStreamReader(CSVChild.class.getResourceAsStream(path)), ' ');
+		}
+		catch(Exception e){
+			log.error("Impossible to access the CSV file"+ e.toString());
+		}
+		
+		ArrayList<Child> children = new ArrayList<>();
+		
+		String [] nextLine;
+	     try {
+	    	log.debug("Debut du parsing");
+			while ((nextLine = reader.readNext()) != null) {
+				//log.debug(nextLine[0]);
+			    // nextLine[] is an array of values from the line
+			    //log.debug(nextLine[0] + " "+ nextLine[1] +" "+ nextLine[2] +" "+nextLine[3] +" "+ nextLine[4]); 
+			    children.add(new Child(turnStringIntoCoordinates(nextLine[1]), turnStringIntoOrientation(nextLine[2]), turnStringIntoPath(nextLine[3]), nextLine[4]));
+			    
+			 }
+		} catch (IOException e) {
+			log.fatal("Erreur lors du parsing du CSV");
+			//e.printStackTrace();
+		}
+		
+		log.info("Children loaded from CSV");
+		return children;
+	}
+	
+	
+	public static ArrayList<Child> getChildrenFromFile(String path){ //  /csv/children.csv
+		try{
+			reader = new CSVReader(new FileReader(path), ' ');
 		}
 		catch(Exception e){
 			log.error("Impossible to access the CSV file"+ e.toString());
@@ -96,7 +127,7 @@ public class CSVChild {
 			log.info("The file to save in already exists");
 		}
 		try{
-			writer = new CSVWriter(new FileWriter(outputFile), '\t', CSVWriter.NO_QUOTE_CHARACTER);
+			writer = new CSVWriter(new FileWriter(outputFile), ' ', CSVWriter.NO_QUOTE_CHARACTER);
 		}catch(IOException e){
 			log.error("Impossible to access the CSV file to save"+ e.toString());
 		}
@@ -108,7 +139,7 @@ public class CSVChild {
 	    	line = new String[5];
 	    	line[0] = "E"; //Child
 	    	Point p = child.getPosition();
-	    	line[1] = String.valueOf((int)p.getX())+"-"+String.valueOf((int)p.getY()); //position
+	    	line[1] = String.valueOf((int)p.getX()+1)+"-"+String.valueOf((int)p.getY()+1); //position
 	    	line[2] = child.getOrientation().toString(); //orientation
 	    	ArrayList<Movement> path = child.getPath();
 	    	line[3] = pathToString(path); //movements

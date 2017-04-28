@@ -1,6 +1,7 @@
 package com.EggsHunting.controller;
 
 import java.awt.Point;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -20,6 +21,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Duration;
 
 public class SimulationController extends ControlledScreen implements Initializable {
@@ -28,6 +31,7 @@ public class SimulationController extends ControlledScreen implements Initializa
 	
 	private DisplayGridSimulation display;
 	private Timeline loop = null;
+	private FileChooser fileChooser = new FileChooser();
 	private static final Logger log = LoggerFactory.getLogger(SimulationController.class);
 
 	@Override
@@ -110,12 +114,37 @@ public class SimulationController extends ControlledScreen implements Initializa
 	
 	@FXML
 	public void handleLoadGarden(){
-		
+		fileChooser.setTitle("Select a file");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("CSV files", "*.csv"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            String path = selectedFile.getPath();
+            log.debug("Path selected from fileChooser: "+path);
+            display = new DisplayGridSimulation(CSVGarden.getGardenFromPath(path));
+    		initGrid();
+    		display.addItems();
+            
+        }
 	}
 	
 	@FXML
 	public void handleLoadChildren(){
-		
+		fileChooser.setTitle("Select a file");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("CSV files", "*.csv"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            String path = selectedFile.getPath();
+            log.debug("Path selected from fileChooser: "+path);
+            stackpane.getChildren().clear();
+    		stackpane.getChildren().add(new Group(display));
+    		display.diplayBoard();
+    		ArrayList<Child> ac = CSVChild.getChildrenFromFile(path);
+    		display.getGarden().setChildren(ac);
+    		display.addChildren();
+            
+        }
 	}
 	
 	@FXML
