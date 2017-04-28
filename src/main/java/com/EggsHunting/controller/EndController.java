@@ -96,25 +96,8 @@ public class EndController extends ControlledScreen implements Initializable {
 
 	@Override
 	public void updateAfterLoadingScreen() {
-		final NumberAxis xAxis = new NumberAxis();
-        final NumberAxis yAxis = new NumberAxis();
         //lineChart = new LineChart<Number,Number>(xAxis,yAxis);
-        lineChart.setTitle("Oeufs au cours du temps par enfant");
-        HashMap<Child, ArrayList<Integer>> chartValues = getChartValues();
-        
-        for (Child c : chartValues.keySet()) {
-        	XYChart.Series series = new XYChart.Series();
-        	series.setName(c.getName());
-        	int cmpt = 0;
-        	ArrayList<Integer> values = chartValues.get(c);
-        	for(int i=0; i<values.size(); i++){
-        		cmpt += values.get(i);
-        		series.getData().add(new XYChart.Data(i+1, cmpt));
-        	}
-        	lineChart.getData().add(series);
-        	
-            //System.out.println("clé: "+mapentry.getKey() + " | valeur: " + mapentry.getValue());
-         }
+     
         /*
         //defining a series
         XYChart.Series series = new XYChart.Series();
@@ -138,7 +121,22 @@ public class EndController extends ControlledScreen implements Initializable {
 
 	@Override
 	public void updateDatas() {
-		// TODO Auto-generated method stub
+		   lineChart.setTitle("Oeufs au cours du temps par enfant");
+	        HashMap<Child, ArrayList<Integer>> chartValues = getChartValues();
+	        
+	        for (Child c : chartValues.keySet()) {
+	        	XYChart.Series series = new XYChart.Series();
+	        	series.setName(c.getName());
+	        	int cmpt = 0;
+	        	ArrayList<Integer> values = chartValues.get(c);
+	        	for(int i=0; i<values.size(); i++){
+	        		cmpt += values.get(i);
+	        		series.getData().add(new XYChart.Data(i+1, cmpt));
+	        	}
+	        	lineChart.getData().add(series);
+	        	
+	            //System.out.println("clé: "+mapentry.getKey() + " | valeur: " + mapentry.getValue());
+	         }
 		
 	}
 	

@@ -240,7 +240,8 @@ public class SimulationController extends ControlledScreen implements Initializa
 		if(isSimulationEnded()){
 			handleStop();
 			goToScreenEnd();
-			sm.getController(MainApp.screenEnd).updateAfterLoadingScreen();
+			sm.getController(MainApp.screenEnd).updateDatas();
+			log.debug("call update after loading");
 		}
 	}
 	
