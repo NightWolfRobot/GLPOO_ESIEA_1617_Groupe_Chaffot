@@ -1,13 +1,10 @@
 package com.EggsHunting.util;
 
 import java.awt.Point;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.apache.log4j.Logger;
@@ -142,7 +139,7 @@ public class CSVGarden {
 	}
 	
 	public static void saveGarden(String filename, Cell[][] grid){
-		String outputFile = filename+".csv";
+		String outputFile = filename;
 		
 		// before we open the file check to see if it already exists
 		boolean alreadyExists = new File(outputFile).exists();

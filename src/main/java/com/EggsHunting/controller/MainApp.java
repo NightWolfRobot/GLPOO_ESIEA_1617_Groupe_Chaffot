@@ -1,7 +1,5 @@
 package com.EggsHunting.controller;
 
-import java.util.ArrayList;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,10 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import com.EggsHunting.model.Child;
-import com.EggsHunting.model.Garden;
-import com.EggsHunting.util.CSVChild;
-import com.EggsHunting.util.CSVGarden;
 
 public class MainApp extends Application {
 
@@ -23,6 +17,9 @@ public class MainApp extends Application {
     public static String screenHomeFile = "/fxml/main.fxml";
     public static String screenSimulation ="Simulation";
     public static String screenSimulationFile="/fxml/simulation.fxml";
+    public static String screenEnd = "End";
+    public static String screenEndFile = "/fxml/end.fxml";
+    
     
 
     public static void main(String[] args) throws Exception {
@@ -35,6 +32,7 @@ public class MainApp extends Application {
 
     	mainContainer.loadScreen(MainApp.screenHomeID, MainApp.screenHomeFile, null);
     	mainContainer.loadScreen(screenSimulation, screenSimulationFile, null);
+    	mainContainer.loadScreen(screenEnd, screenEndFile, null);
     	mainContainer.setScreen(MainApp.screenHomeID);
     	
     	Group root = new Group();
@@ -45,6 +43,7 @@ public class MainApp extends Application {
         scene.getStylesheets().addAll(this.getClass().getResource("/styles/styles.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
+        log.info("Display main frame");
     	/*
         ArrayList<Child> children = CSVChild.getChildren("/csv/children.csv");
         log.info("Starting Hello JavaFX and Maven demonstration application");

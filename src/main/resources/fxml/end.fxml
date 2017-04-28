@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="pane2" prefHeight="700" prefWidth="1200" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.EggsHunting.controller.EndController">
+   <children>
+      <BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #cecece;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <Pane prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: #d8d8d8;" BorderPane.alignment="CENTER" />
+         </bottom>
+         <top>
+            <HBox prefHeight="70.0" prefWidth="1200.0" style="-fx-background-color: #d8d8d8;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="225.0" onMouseClicked="#goToScreenHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logoSimulation.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="2.0" />
+                     </HBox.margin></ImageView>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button id="record-sales" mnemonicParsing="false" onAction="#goToScreenBack" text="Back">
+                     <HBox.margin>
+                        <Insets right="20.0" top="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <StackPane  prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableView" prefHeight="570.0" prefWidth="226.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" />
+                            <TableColumn prefWidth="75.0" text="Child" />
+                              <TableColumn prefWidth="75.0" text="Nb Eggs" />
+                          </columns>
+                           <HBox.margin>
+                              <Insets bottom="20.0" right="50.0" top="10.0" />
+                           </HBox.margin>
+                        </TableView>
+                        <LineChart fx:id="lineChart" prefHeight="570.0" prefWidth="830.0">
+                          <xAxis>
+                            <NumberAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children>
+                  </HBox>
+               </children></StackPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

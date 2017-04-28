@@ -101,6 +101,97 @@
     -fx-effect: dropshadow( gaussian , #008ba3 , 0,0,0,2 );
 }
 
+
+#btn-blue-dark {
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #132fa4 0%, #121c91 100%),
+        #24249e,
+        #413bd8,
+        radial-gradient(center 50% 50%, radius 100%, #3b41d8, #2c38c3);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+}
+#btn-blue-dark:hover {
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #1319a4 0%, #121c91 100%),
+        #24249e,
+        #3b47d8,
+        radial-gradient(center 50% 50%, radius 100%, #4d59ea, #2c38c3);
+}
+#btn-blue-dark:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+#btn-blue-dark Text {
+    -fx-fill: white;
+    -fx-effect: dropshadow( gaussian , #0006a3 , 0,0,0,2 );
+}
+
+
+#btn-red {
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #a41313 0%, #911212 100%),
+        #9e2424,
+        #d83b3b,
+        radial-gradient(center 50% 50%, radius 100%, #d83b3b, #c32c2c);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+}
+#btn-red:hover {
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #a41313 0%, #911212 100%),
+        #9e2424,
+        #d83b3b,
+        radial-gradient(center 50% 50%, radius 100%, #ea4d4d, #c32c2c);
+}
+#btn-red:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+#btn-red Text {
+    -fx-fill: white;
+    -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
+}
+
+
+#btn-green {
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #13a419 0%, #129117 100%),
+        #249e29,
+        #3bd84d,
+        radial-gradient(center 50% 50%, radius 100%, #3bd847, #2cc332);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+}
+#btn-green:hover {
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #13a41e 0%, #12911c 100%),
+        #249e24,
+        #3bd83b,
+        radial-gradient(center 50% 50%, radius 100%, #4dea53, #38c32c);
+}
+#btn-green:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+#btn-green Text {
+    -fx-fill: white;
+    -fx-effect: dropshadow( gaussian , #0da300 , 0,0,0,2 );
+}
+
+
 #pane{
     -fx-background-image: url("/images/Easter-Bunny-Images.jpg");
     -fx-background-repeat: stretch;   

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.EggsHunting.model.Cell;
 import com.EggsHunting.model.Child;
+import com.EggsHunting.model.Garden;
 import com.EggsHunting.util.CSVChild;
 import com.EggsHunting.util.CSVGarden;
 import com.EggsHunting.view.DisplayGridSimulation;
@@ -30,22 +31,56 @@ public class SimulationController extends ControlledScreen implements Initializa
 	@FXML StackPane stackpane;
 	
 	private DisplayGridSimulation display;
+	/**
+	 * @return the display
+	 */
+	public DisplayGridSimulation getDisplay() {
+		return display;
+	}
+
+	/**
+	 * @param display the display to set
+	 */
+	public void setDisplay(DisplayGridSimulation display) {
+		this.display = display;
+	}
+
 	private Timeline loop = null;
 	private FileChooser fileChooser = new FileChooser();
 	private static final Logger log = LoggerFactory.getLogger(SimulationController.class);
-	private ArrayList<ArrayList<Child>> result = new ArrayList();
+	private ArrayList<ArrayList<Child>> result = new ArrayList<>();
+
+	/**
+	 * @return the result
+	 */
+	public ArrayList<ArrayList<Child>> getResult() {
+		return result;
+	}
+
+	/**
+	 * @param result the result to set
+	 */
+	public void setResult(ArrayList<ArrayList<Child>> result) {
+		this.result = result;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		display = new DisplayGridSimulation(CSVGarden.getGarden("/csv/garden.csv"));
 		initGrid();
+		loadChildren();
 	}
 	
     @FXML
     public void goToScreenHome(){
     	sm.setScreen(MainApp.screenHomeID);
     }
+    
+    public void goToScreenEnd(){
+    	sm.setScreen(MainApp.screenEnd);
+    }
 	
+    
 	private void initGrid(){
 		stackpane.getChildren().clear();
 		stackpane.getChildren().add(new Group(display));
@@ -202,12 +237,61 @@ public class SimulationController extends ControlledScreen implements Initializa
 		log.info("Resetting grid");
 		resetGrid();	
 		log.info("One step done");
+		if(isSimulationEnded()){
+			handleStop();
+			goToScreenEnd();
+			sm.getController(MainApp.screenEnd).updateAfterLoadingScreen();
+		}
+	}
+	
+	public boolean isSimulationEnded(){
+		if(lockedChildren() || hasNoMoreEggs()){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean lockedChildren(){
+		Garden g = display.getGarden();
+		for(Child c : g.getChildren()){
+			if(!c.getPath().isEmpty()){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean hasNoMoreEggs(){
+		Garden g = display.getGarden();
+		for(int i=0; i<g.getX(); i++){
+			for(int j=0; j<g.getY(); j++){
+				if(g.getCell(i, j).hasEggs()){
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	@FXML
 	public void saveGame(){
-		CSVChild.saveChildren("saveChildren", display.getGarden().getChildren());
-        CSVGarden.saveGarden("saveGarden", display.getGarden().getGrid());
+		
+		fileChooser.setTitle("Save");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("CSV files", "*.csv"));
+        fileChooser.setInitialFileName("save.csv");
+        File selectedFile = fileChooser.showSaveDialog(null);
+        if (selectedFile != null) {
+            String path = selectedFile.getPath();
+            //SaveManager.saveBoard(path, board);
+            String str = path.substring(0, path.length()-4);
+            //log.info(str);
+            CSVChild.saveChildren(str+"_children.csv", display.getGarden().getChildren());
+            CSVGarden.saveGarden(str+"_garden.csv", display.getGarden().getGrid());
+        }
+		
+		//CSVChild.saveChildren("saveChildren", display.getGarden().getChildren());
+        //CSVGarden.saveGarden("saveGarden", display.getGarden().getGrid());
         log.info("Done saving");
 	}
 

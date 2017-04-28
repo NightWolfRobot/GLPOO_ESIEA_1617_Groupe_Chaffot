@@ -56,7 +56,7 @@ public class ScreenManager extends StackPane{
             addController(name, myScreenControler);
             return true;
         } catch (Exception e) {
-            log.fatal(e.getMessage()+" Le screen ne s'est pas charg�");
+            log.fatal(e.getMessage()+" Le screen ne s'est pas charge");
             e.printStackTrace(System.out);
             return false;
         }
