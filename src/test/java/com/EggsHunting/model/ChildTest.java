@@ -95,6 +95,7 @@ public class ChildTest {
 
 	@Test
 	public void testGetNextPosition() {
+		//NORTH
 		ArrayList<Movement> path1 = new ArrayList<>();
 		path1.add(Movement.RIGHT);		
 		Child child1 = new Child();
@@ -113,7 +114,62 @@ public class ChildTest {
 		child3.setPath(path3);
 		assertTrue("Got Next Position",child3.getNextPosition().getX() == child3.getPosition().getX()-1);	
 		
+		//EAST
+		path1 = new ArrayList<>();
+		path1.add(Movement.RIGHT);		
+		child1 = new Child(new Point(0,0),Orientation.EAST,path1,"test");
+		child1.setPath(path1);
+		assertTrue("Got Next Position",child1.getNextPosition().getX() == child1.getPosition().getX()+1);
 		
+		path2 = new ArrayList<>();
+		path2.add(Movement.LEFT);		
+		child2 = new Child(new Point(0,0),Orientation.EAST,path1,"test");
+		child2.setPath(path2);
+		assertTrue("Got Next Position",child2.getNextPosition().getX() == child2.getPosition().getX()-1);
+		
+		path3 = new ArrayList<>();
+		path3.add(Movement.FORWARD);		
+		child3 = new Child(new Point(0,0),Orientation.EAST,path1,"test");
+		child3.setPath(path3);
+		assertTrue("Got Next Position",child3.getNextPosition().getY() == child3.getPosition().getY()+1);
+		
+		//SOUTH
+		path1 = new ArrayList<>();
+		path1.add(Movement.RIGHT);		
+		child1 = new Child(new Point(0,0),Orientation.SOUTH,path1,"test");
+		child1.setPath(path1);
+		assertTrue("Got Next Position",child1.getNextPosition().getY() == child1.getPosition().getY()-1);
+		
+		path2 = new ArrayList<>();
+		path2.add(Movement.LEFT);		
+		child2 = new Child(new Point(0,0),Orientation.SOUTH,path1,"test");
+		child2.setPath(path2);
+		assertTrue("Got Next Position",child2.getNextPosition().getY() == child2.getPosition().getY()+1);
+		
+		path3 = new ArrayList<>();
+		path3.add(Movement.FORWARD);		
+		child3 = new Child(new Point(0,0),Orientation.SOUTH,path1,"test");
+		child3.setPath(path3);
+		assertTrue("Got Next Position",child3.getNextPosition().getX() == child3.getPosition().getX()+1);
+		
+		//WEST
+		path1 = new ArrayList<>();
+		path1.add(Movement.RIGHT);		
+		child1 = new Child(new Point(0,0),Orientation.WEST,path1,"test");
+		child1.setPath(path1);
+		assertTrue("Got Next Position",child1.getNextPosition().getX() == child1.getPosition().getX()-1);
+		
+		path2 = new ArrayList<>();
+		path2.add(Movement.LEFT);		
+		child2 = new Child(new Point(0,0),Orientation.WEST,path1,"test");
+		child2.setPath(path2);
+		assertTrue("Got Next Position",child2.getNextPosition().getX() == child2.getPosition().getX()+1);
+		
+		path3 = new ArrayList<>();
+		path3.add(Movement.FORWARD);		
+		child3 = new Child(new Point(0,0),Orientation.WEST,path1,"test");
+		child3.setPath(path3);
+		assertTrue("Got Next Position",child3.getNextPosition().getY() == child3.getPosition().getY()-1);
 		
 	}
 
@@ -127,6 +183,59 @@ public class ChildTest {
 		child1.turn();
 		assertTrue("Child turned",child1.getOrientation() == Orientation.WEST);
 		
+		path = new ArrayList<>();
+		path.add(Movement.LEFT);		
+		child1 = new Child();
+		child1.setOrientation(Orientation.SOUTH);
+		child1.setPath(path);
+		child1.turn();
+		assertTrue("Child turned",child1.getOrientation() == Orientation.EAST);
+		
+		path = new ArrayList<>();
+		path.add(Movement.RIGHT);		
+		child1 = new Child();
+		child1.setPath(path);
+		child1.turn();
+		assertTrue("Child turned",child1.getOrientation() == Orientation.EAST);
+		
+		path = new ArrayList<>();
+		path.add(Movement.LEFT);		
+		child1 = new Child();
+		child1.setPath(path);
+		child1.turn();
+		assertTrue("Child turned",child1.getOrientation() == Orientation.WEST);
+		
+		path = new ArrayList<>();
+		path.add(Movement.RIGHT);		
+		child1 = new Child();
+		child1.setOrientation(Orientation.EAST);
+		child1.setPath(path);
+		child1.turn();
+		assertTrue("Child turned",child1.getOrientation() == Orientation.SOUTH);
+		
+		path = new ArrayList<>();
+		path.add(Movement.LEFT);		
+		child1 = new Child();
+		child1.setOrientation(Orientation.EAST);
+		child1.setPath(path);
+		child1.turn();
+		assertTrue("Child turned",child1.getOrientation() == Orientation.NORTH);
+		
+		path = new ArrayList<>();
+		path.add(Movement.RIGHT);		
+		child1 = new Child();
+		child1.setOrientation(Orientation.WEST);
+		child1.setPath(path);
+		child1.turn();
+		assertTrue("Child turned",child1.getOrientation() == Orientation.NORTH);
+		
+		path = new ArrayList<>();
+		path.add(Movement.LEFT);		
+		child1 = new Child();
+		child1.setOrientation(Orientation.WEST);
+		child1.setPath(path);
+		child1.turn();
+		assertTrue("Child turned",child1.getOrientation() == Orientation.SOUTH);
 	}
 
 }
